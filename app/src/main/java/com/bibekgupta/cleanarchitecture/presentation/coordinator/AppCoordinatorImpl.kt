@@ -55,7 +55,11 @@ class AppCoordinatorImpl(
     override fun navigateToSettings() = navigateTo(NavRoutes.SETTINGS)
     override fun navigateToAdd() = navigateTo(NavRoutes.ADD)
     override fun navigateToOtpSend() = navigateTo(NavRoutes.OTP_SEND)
-    override fun navigateToOtpVerify() = navigateTo(NavRoutes.OTP_VERIFY)
+//    override fun navigateToOtpVerify() = navigateTo(NavRoutes.OTP_VERIFY)
     override fun navigateBack() = navController.popBackStack()
     override fun navigateUp(): Boolean = navController.navigateUp()
+
+    override fun navigateToOtpVerify(phoneNumber: String) {
+        navigateTo("otp_verify/$phoneNumber")
+    }
 }

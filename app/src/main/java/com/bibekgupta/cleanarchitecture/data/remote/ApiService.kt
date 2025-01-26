@@ -3,9 +3,10 @@ package com.bibekgupta.cleanarchitecture.data.remote
 import android.provider.ContactsContract.CommonDataKinds.Email
 import com.bibekgupta.cleanarchitecture.data.model.login.LoginRequest
 import com.bibekgupta.cleanarchitecture.data.model.login.LoginResponseDto
-import com.bibekgupta.cleanarchitecture.data.model.otp.OtpResponseDto
 import com.bibekgupta.cleanarchitecture.data.model.otp.OtpSendRequest
+import com.bibekgupta.cleanarchitecture.data.model.otp.OtpSendResponseDto
 import com.bibekgupta.cleanarchitecture.data.model.otp.OtpVerifyRequest
+import com.bibekgupta.cleanarchitecture.data.model.otp.OtpVerifyResponseDto
 import com.bibekgupta.cleanarchitecture.data.model.register.RegisterRequest
 import com.bibekgupta.cleanarchitecture.data.model.register.RegisterResponseDto
 import okhttp3.MultipartBody
@@ -31,9 +32,9 @@ interface ApiService {
     ): RegisterResponseDto
 
     @POST("/user/login/send-otp")
-    suspend fun sendOtp(@Body request: OtpSendRequest): OtpResponseDto
+    suspend fun sendOtp(@Body request: OtpSendRequest): OtpSendResponseDto
 
     @POST("/user/login/verify-otp")
-    suspend fun verifyOtp(@Body request: OtpVerifyRequest): OtpResponseDto
+    suspend fun verifyOtp(@Body request: OtpVerifyRequest): OtpVerifyResponseDto
 
 }

@@ -46,12 +46,20 @@ fun NavGraph(coordinator: AppCoordinatorImpl) {
             composable(NavRoutes.OTP_SEND) {
                 OtpSendScreen(coordinator)
             }
+//            composable(
+//                NavRoutes.OTP_VERIFY,
+//                arguments = listOf(navArgument("phoneNumber") { type = NavType.StringType })
+//                ) { backStackEntry ->
+//                val phoneNumber = backStackEntry.arguments?.getString("phoneNumber")
+//                OtpVerifyScreen(coordinator, phoneNumber.toString())
+//            }
+
             composable(
-                NavRoutes.OTP_VERIFY,
+                route = "otp_verify/{phoneNumber}",
                 arguments = listOf(navArgument("phoneNumber") { type = NavType.StringType })
-                ) { backStackEntry ->
-                val phoneNumber = backStackEntry.arguments?.getString("phoneNumber")
-                OtpVerifyScreen(coordinator, phoneNumber.toString())
+            ) { backStackEntry ->
+                val phoneNumber = backStackEntry.arguments?.getString("phoneNumber") ?: ""
+                OtpVerifyScreen(coordinator, phoneNumber)
             }
 
         }

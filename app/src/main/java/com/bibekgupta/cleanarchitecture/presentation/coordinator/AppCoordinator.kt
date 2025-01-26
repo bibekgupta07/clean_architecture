@@ -7,7 +7,7 @@ interface AppCoordinator {
     fun navigateToRegister()
     fun navigateToForgotPassword()
     fun navigateToOtpSend()
-    fun navigateToOtpVerify()
+    fun navigateToOtpVerify(phoneNumber: String)
     fun navigateToHome()
     fun navigateToSettings()
     fun navigateToAdd()

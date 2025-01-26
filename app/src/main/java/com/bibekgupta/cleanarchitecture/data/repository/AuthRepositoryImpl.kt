@@ -9,7 +9,8 @@ import com.bibekgupta.cleanarchitecture.data.model.otp.OtpVerifyRequest
 import com.bibekgupta.cleanarchitecture.data.model.register.RegisterRequest
 import com.bibekgupta.cleanarchitecture.data.remote.ApiService
 import com.bibekgupta.cleanarchitecture.domain.model.login.LoginResponse
-import com.bibekgupta.cleanarchitecture.domain.model.otp.OtpResponse
+import com.bibekgupta.cleanarchitecture.domain.model.otp.OtpSendResponse
+import com.bibekgupta.cleanarchitecture.domain.model.otp.OtpVerifyResponse
 import com.bibekgupta.cleanarchitecture.domain.model.register.RegisterResponse
 import com.bibekgupta.cleanarchitecture.domain.repository.AuthRepository
 import com.bibekgupta.cleanarchitecture.utility.Resource
@@ -68,7 +69,7 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun sendOtp(phone: String): Resource<OtpResponse> {
+    override suspend fun sendOtp(phone: String): Resource<OtpSendResponse> {
         return try{
             val response = apiService.sendOtp(OtpSendRequest(phone))
             if (response.success) {
@@ -84,7 +85,7 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun verifyOtp(
         phone: String,
         otp: String
-    ): Resource<OtpResponse> {
+    ): Resource<OtpVerifyResponse> {
         return try {
             val response = apiService.verifyOtp(OtpVerifyRequest(phone, otp))
             if (response.success) {
@@ -92,9 +93,10 @@ class AuthRepositoryImpl @Inject constructor(
             } else {
                 Resource.Error(response.error ?: response.message ?: "An unknown error occurred")
             }
-        }catch (e: Exception){
-            Resource.Error(e.message ?: "An error occurred during otp")
+        } catch (e: Exception) {
+            Resource.Error(e.message ?: "An error occurred during OTP verification")
         }
     }
+
 }
 

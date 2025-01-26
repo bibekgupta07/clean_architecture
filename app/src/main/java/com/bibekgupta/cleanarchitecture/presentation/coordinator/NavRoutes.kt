@@ -12,4 +12,6 @@ object NavRoutes {
     const val ADD = "add"
     const val OTP_SEND = "otp_send"
     const val OTP_VERIFY = "otp_verify/{phoneNumber}"
+//    const val OTP_VERIFY = "otp_verify"
+
 }
